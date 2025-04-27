@@ -30,11 +30,14 @@ class _SignInPageState extends State<SignInPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
+                Text(
                   "Login to your\nAccount",
-                  style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    fontSize: 48.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-                const SizedBox(height: 30),
+                SizedBox(height: 30.h),
                 TextFieldWidget(
                   text: 'Email',
                   prefixIcon: const Icon(
@@ -44,7 +47,7 @@ class _SignInPageState extends State<SignInPage> {
                   textEditingController: emailController,
                   obscureText: false,
                 ),
-                const SizedBox(height: 10),
+                SizedBox(height: 10.h),
                 TextFieldWidget(
                   text: 'Password',
                   prefixIcon: const Icon(IconlyLight.lock, color: Colors.grey),
@@ -73,20 +76,20 @@ class _SignInPageState extends State<SignInPage> {
                         child:
                             card
                                 ? Container(
-                                  width: 25,
-                                  height: 25,
+                                  width: 25.w,
+                                  height: 25.h,
                                   decoration: BoxDecoration(
                                     color: Colors.grey[100],
                                     border: Border.all(
                                       color: Color(0xff335EF7),
-                                      width: 3,
+                                      width: 3.w,
                                     ),
                                     borderRadius: BorderRadius.circular(8),
                                   ),
                                 )
                                 : Container(
-                                  width: 25,
-                                  height: 25,
+                                  width: 25.w,
+                                  height: 25.w,
                                   decoration: BoxDecoration(
                                     image: const DecorationImage(
                                       image: AssetImage(
@@ -95,13 +98,13 @@ class _SignInPageState extends State<SignInPage> {
                                     ),
                                     border: Border.all(
                                       color: Color(0xff335EF7),
-                                      width: 3,
+                                      width: 3.w,
                                     ),
                                     borderRadius: BorderRadius.circular(8),
                                   ),
                                 ),
                       ),
-                      const SizedBox(width: 20),
+                      SizedBox(width: 20.w),
                       const Text("Remember me"),
                     ],
                   ),

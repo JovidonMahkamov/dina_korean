@@ -18,7 +18,7 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
     Timer(const Duration(seconds: 3), () {
-      Navigator.pushReplacementNamed(context, RouteNames.signInPage);
+      Navigator.pushReplacementNamed(context, RouteNames.homePage);
     });
   }
 
@@ -33,17 +33,17 @@ class _SplashPageState extends State<SplashPage> {
               Center(
                 child: Image.asset(
                   "assets/sign/dk.PNG",
-                  width: 150,
-                  height: 150,
+                  width: 150.w,
+                  height: 150.h,
                   color: Colors.white,
                 ),
               ),
               SizedBox(
                 height: 270.h,
               ),
-              const SizedBox(
-                width: 60,
-                height: 60,
+              SizedBox(
+                width: 60.w,
+                height: 60.h,
                 child: LoadingIndicator(
                   indicatorType: Indicator.ballSpinFadeLoader,
                   colors: [Colors.white],
