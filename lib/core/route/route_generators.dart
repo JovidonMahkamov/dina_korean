@@ -1,9 +1,10 @@
 import 'package:dina_korean_real/core/route/route_names.dart';
 import 'package:dina_korean_real/features/auth/presentation/pages/into/sign_in_page.dart';
-import 'package:dina_korean_real/features/home/presentation/pages/home_page.dart';
+import 'package:dina_korean_real/features/home/presentation/pages/home/home_page.dart';
 import 'package:flutter/material.dart';
 
 import '../../features/auth/presentation/pages/into/splash_page.dart';
+import '../../features/home/presentation/pages/home/bottom_nav_bar.dart';
 
 class AppRoute {
   BuildContext context;
@@ -16,8 +17,8 @@ class AppRoute {
         return MaterialPageRoute(builder: (_) => const SplashPage());
       case RouteNames.signInPage:
         return MaterialPageRoute(builder: (_) => const SignInPage());
-      case RouteNames.homePage:
-        return MaterialPageRoute(builder: (_) => const Home_Page());
+      case RouteNames.bottomNavBar:
+        return MaterialPageRoute(builder: (_) => const BottomNavBarPage());
       default:
         return _errorRoute();
     }

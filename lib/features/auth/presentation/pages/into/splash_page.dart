@@ -18,7 +18,7 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
     Timer(const Duration(seconds: 3), () {
-      Navigator.pushReplacementNamed(context, RouteNames.homePage);
+      Navigator.pushReplacementNamed(context, RouteNames.bottomNavBar);
     });
   }
 
@@ -38,8 +38,10 @@ class _SplashPageState extends State<SplashPage> {
                   color: Colors.white,
                 ),
               ),
+              SizedBox(height: 15.h,),
+              Text('DinaKorean',style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold,color: Colors.white),),
               SizedBox(
-                height: 270.h,
+                height: 240.h,
               ),
               SizedBox(
                 width: 60.w,
