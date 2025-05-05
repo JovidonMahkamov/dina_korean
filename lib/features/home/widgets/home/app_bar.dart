@@ -1,11 +1,14 @@
-import 'package:dina_korean_real/core/route/route_names.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 
 import '../../../../core/dark_light/theme_changin.dart';
 
 class MyAppBar extends ConsumerWidget implements PreferredSizeWidget {
+
+  void Function(bool) onToggle;
+  MyAppBar({required this.onToggle});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return AppBar(
@@ -24,31 +27,9 @@ class MyAppBar extends ConsumerWidget implements PreferredSizeWidget {
           toggleColor: Colors.white,
           activeIcon: Icon(Icons.dark_mode),
           inactiveIcon: Icon(Icons.sunny),
-          onToggle: (value) {
-            ref.read(themeProvider.notifier).toggleTheme();
-          },
+          onToggle: onToggle,
         ),
-        SizedBox(width: 15),
-        GestureDetector(
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: Colors.grey, width: 1.0),
-            ),
-            width: 80,
-            height: 35,
-            child: Center(
-              child: Text(
-                "Kirish",
-                style: TextStyle(fontWeight: FontWeight.w500),
-              ),
-            ),
-          ),
-          onTap: () {
-            Navigator.pushNamed(context, RouteNames.signInPage);
-          },
-        ),
-        SizedBox(width: 10),
+        SizedBox(width: 15.w,)
       ],
     );
   }

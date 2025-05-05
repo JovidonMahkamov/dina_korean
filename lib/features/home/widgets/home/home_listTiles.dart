@@ -6,19 +6,21 @@ class HomeListTile extends StatelessWidget {
   final String title;
   final String subtitle;
   final Color circularColor;
+  final Color backColor;
 
   const HomeListTile({
     Key? key,
     required this.iconAvatar,
     required this.title,
     required this.subtitle,
-    required this.circularColor,
+    required this.circularColor, required this.backColor,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 80.h,
+      padding: EdgeInsets.only(left: 15,),
+      height: 90.h,
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20.r),
@@ -32,28 +34,37 @@ class HomeListTile extends StatelessWidget {
         ],
         color: Colors.white,
       ),
-      child: ListTile(
-        leading: CircleAvatar(
-          radius: 30.r,
-          child: iconAvatar,
-          backgroundColor: circularColor,
-        ),
-        title: Text(
-          title,
-          style: TextStyle(
-            color: Colors.grey[600],
-            fontSize: 16.sp,
-            fontWeight: FontWeight.w700,
+      child: Row(
+        children: [
+          CircleAvatar(
+            radius: 30.r,
+            child: iconAvatar,
+            backgroundColor: circularColor,
           ),
-        ),
-        subtitle: Text(
-          subtitle,
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 30.sp,
-            fontWeight: FontWeight.w800,
+          SizedBox(width: 15.w,),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                style: TextStyle(
+                  color: Colors.grey[600],
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              Text(
+                subtitle,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 30.sp,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+            ],
           ),
-        ),
+        ],
       ),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
+import '../../../../../core/route/route_names.dart';
 import '../../widgets/elevated_widget.dart';
 import '../../widgets/text_field_widget.dart';
 
@@ -62,7 +63,7 @@ class _SignInPageState extends State<SignInPage> {
               ),
               ElevatedWidget(
                 onPressed: () {
-                  // Navigator.pushNamed(context, RouteNames.bottom_Navbar);
+                  Navigator.pushNamed(context, RouteNames.bottomNavBar);
                 },
                 text: 'Sign In',
               ),
