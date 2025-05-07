@@ -1,3 +1,4 @@
+import 'package:dina_korean_real/core/common/colors/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -6,14 +7,13 @@ class HomeListTile extends StatelessWidget {
   final String title;
   final String subtitle;
   final Color circularColor;
-  final Color backColor;
 
   const HomeListTile({
     Key? key,
     required this.iconAvatar,
     required this.title,
     required this.subtitle,
-    required this.circularColor, required this.backColor,
+    required this.circularColor,
   }) : super(key: key);
 
   @override
@@ -32,7 +32,8 @@ class HomeListTile extends StatelessWidget {
             spreadRadius: 3, // How far the shadow is spread
           ),
         ],
-        color: Colors.white,
+        color: context.isDark? Color(0xFF1E293B) // slate-800
+          : Colors.white,
       ),
       child: Row(
         children: [
@@ -49,15 +50,15 @@ class HomeListTile extends StatelessWidget {
               Text(
                 title,
                 style: TextStyle(
-                  color: Colors.grey[600],
-                  fontSize: 16.sp,
+                  color: context.isDark? Colors.grey[300]: Colors.grey[600],
+                  fontSize: 17.sp,
                   fontWeight: FontWeight.w700,
                 ),
               ),
               Text(
                 subtitle,
                 style: TextStyle(
-                  color: Colors.black,
+                  // color: Colors.black,
                   fontSize: 30.sp,
                   fontWeight: FontWeight.w800,
                 ),

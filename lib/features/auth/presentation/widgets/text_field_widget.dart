@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TextFieldWidget extends StatefulWidget {
   final String text;
@@ -51,7 +52,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
         Container(
           decoration: BoxDecoration(
             color: _isFocused ? Colors.lightBlue.shade50 : Colors.grey.shade200,
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(12.r),
           ),
           child: TextField(
             inputFormatters: [],
@@ -65,28 +66,28 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
               suffixIcon: widget.suffixIcon,
               hintText: widget.text,
               hintStyle: TextStyle(
-                fontSize: 16,
+                fontSize: 16.sp,
                 fontWeight: FontWeight.w400,
                 color: Colors.grey.shade400,
               ),
               prefixIcon: widget.prefixIcon,
               border: OutlineInputBorder(
                 borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(12.r),
               ),
               focusedBorder: OutlineInputBorder(
-                borderSide: const BorderSide(color: Colors.blue, width: 1.5),
-                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(color: Colors.blue, width: 1.5.w),
+                borderRadius: BorderRadius.circular(12.r),
               ),
             ),
-            style: const TextStyle(
-              fontSize: 16,
+            style: TextStyle(
+              fontSize: 16.sp,
               color: Colors.black,
             ),
           ),
         ),
-        const SizedBox(
-          height: 15,
+        SizedBox(
+          height: 15.h,
         ),
       ],
     );

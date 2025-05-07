@@ -14,18 +14,21 @@ class _OnlineLessonPageState extends State<OnlineLessonPage> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.all(15),
+          padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 15.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 'Kurslar',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25.sp),
               ),
               SizedBox(height: 5.h,),
               Text(
                 "Sizda mavjud bo'lgan kurslar",
-                style: TextStyle(fontWeight: FontWeight.w400, fontSize: 14),
+                style: TextStyle(fontWeight: FontWeight.w400, fontSize: 16.sp),
+              ),
+              Divider(
+                thickness: 2.0.h,
               ),
               SizedBox(height: 5.h,),
               Image.asset('assets/sources/Dina_4.png')

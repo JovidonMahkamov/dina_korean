@@ -17,7 +17,7 @@ class _ContainerWidgetState extends State<ContainerWidget> {
         height: 300.h,
         width: double.infinity.w,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(12.r),
             color: Colors.black
         ),
         child: Column(

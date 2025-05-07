@@ -2,6 +2,7 @@ import 'package:dina_korean_real/features/home/presentation/pages/online_lessons
 import 'package:dina_korean_real/features/home/presentation/pages/results/result_page.dart';
 import 'package:dina_korean_real/features/home/presentation/pages/sources/source_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
 import '../profile/profile_page.dart';
 import 'home_page.dart';
@@ -36,7 +37,7 @@ class _BottomNavBarPageState extends State<BottomNavBarPage> {
           selectedItemColor: Colors.blueAccent,
           currentIndex: _currentIndex,
           selectedLabelStyle:
-          const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+          TextStyle(fontWeight: FontWeight.bold, fontSize: 15.sp),
           onTap: (int newIndex) {
             setState(() {
               _currentIndex = newIndex;

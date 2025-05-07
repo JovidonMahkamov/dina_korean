@@ -26,7 +26,7 @@ class _SignInPageState extends State<SignInPage> {
         child: Container(
           width: double.infinity,
           height: MediaQuery.of(context).size.height,
-          padding: const EdgeInsets.all(20),
+          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -58,8 +58,7 @@ class _SignInPageState extends State<SignInPage> {
                 obscureText: eye,
               ),
               Expanded(
-                child: SizedBox(//height: 250.h
-                ),
+                child: SizedBox(),
               ),
               ElevatedWidget(
                 onPressed: () {
