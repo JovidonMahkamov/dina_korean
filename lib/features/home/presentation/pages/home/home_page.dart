@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dina_korean_real/features/home/widgets/home/app_bar.dart';
 import 'package:dina_korean_real/features/home/widgets/home/home_listTiles.dart';
+import 'package:dina_korean_real/features/home/widgets/home/scroll_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -265,7 +266,6 @@ bool isColor = true;
                   },
                   options: CarouselOptions(
                     height: 240.h,
-                    // bu container ichidagi max balandlikka mos
                     autoPlay: true,
                     autoPlayInterval: Duration(seconds: 3),
                     viewportFraction: 1.0,
@@ -278,67 +278,7 @@ bool isColor = true;
                 ),
               ),
               SizedBox(height: 8.h,),
-              Container(
-                padding: EdgeInsets.only(top: 20.h, bottom: 20.h, left: 20.h, right: 20.h),
-                height: 700.h,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10.r),
-                ),
-                child: Column(
-                  children: [
-                    Text("Video darslardagi o'quvchilar reytingi !",
-                      style: TextStyle(color: Colors.grey[600],
-                          fontWeight: FontWeight.w700, fontSize: 19.sp),),
-                    SizedBox(height: 8.h,),
-                    Container(
-                      height: 570.h,
-                      width: double.infinity,
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.vertical,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Asadbek", style: TextStyle(color: Colors.black, fontSize: 20.sp)),
-                            SizedBox(height: 10.h,),
-                            Text("Asadbek", style: TextStyle(color: Colors.black, fontSize: 20.sp)),
-                            SizedBox(height: 10.h,),
-                            Text("Asadbek", style: TextStyle(color: Colors.black, fontSize: 20.sp)),
-                            SizedBox(height: 10.h,),
-                            Text("Asadbek", style: TextStyle(color: Colors.black, fontSize: 20.sp)),
-                            SizedBox(height: 10.h,),
-                            Text("Asadbek", style: TextStyle(color: Colors.black, fontSize: 20.sp)),
-                            SizedBox(height: 10.h,),
-                            Text("Asadbek", style: TextStyle(color: Colors.black, fontSize: 20.sp)),
-                            SizedBox(height: 10.h,),
-                            Text("Asadbek", style: TextStyle(color: Colors.black, fontSize: 20.sp)),
-                            SizedBox(height: 10.h,),
-                            Text("Asadbek", style: TextStyle(color: Colors.black, fontSize: 20.sp)),
-                            SizedBox(height: 10.h,),
-                            Text("Asadbek", style: TextStyle(color: Colors.black, fontSize: 20.sp)),
-                            SizedBox(height: 10.h,),
-                            Text("Asadbek", style: TextStyle(color: Colors.black, fontSize: 20.sp)),
-                            SizedBox(height: 10.h,),
-                            Text("Asadbek", style: TextStyle(color: Colors.black, fontSize: 20.sp)),
-                            SizedBox(height: 10.h,),
-                            Text("Asadbek", style: TextStyle(color: Colors.black, fontSize: 20.sp)),
-                            SizedBox(height: 10.h,),
-                            Text("Asadbek", style: TextStyle(color: Colors.black, fontSize: 20.sp)),
-                            SizedBox(height: 10.h,),
-                            Text("Asadbek", style: TextStyle(color: Colors.black, fontSize: 20.sp)),
-                            SizedBox(height: 10.h,),
-                            Text("Asadbek", style: TextStyle(color: Colors.black, fontSize: 20.sp)),
-                            SizedBox(height: 10.h,),
-                            Text("Asadbek", style: TextStyle(color: Colors.black, fontSize: 20.sp)),
-                            SizedBox(height: 10.h,),
-                          ],
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              )
+              StudentRatingWidget(),
             ],
           ),
         ),
