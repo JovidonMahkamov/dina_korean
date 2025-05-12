@@ -13,7 +13,7 @@ class MyAppBar extends ConsumerWidget implements PreferredSizeWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return AppBar(
       automaticallyImplyLeading: false,
-      title: Image.asset("assets/sign/dk.PNG", width: 40, height: 40),
+      title: Image.asset("assets/sign/dk.PNG", width: 40.w, height: 40.h),
       actions: [
         FlutterSwitch(
           width: 45.0,

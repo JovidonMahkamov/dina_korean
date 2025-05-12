@@ -21,31 +21,31 @@ class SourcePage extends StatelessWidget {
                 items:
                     imagePaths.map((path) {
                       return Container(
-                        margin: EdgeInsets.symmetric(horizontal: 10),
+                        margin: EdgeInsets.symmetric(horizontal: 10.w),
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(12.r),
                           color: Colors.white,
                           boxShadow: [
                             BoxShadow(
                               color: Colors.black12,
-                              blurRadius: 6,
+                              blurRadius: 6.r,
                               offset: Offset(0, 3),
                             ),
                           ],
                         ),
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(12.r),
                           child: Image.asset(
                             path,
                             fit: BoxFit.cover,
                             width: double.infinity,
-                            height: 400,
+                            height: 400.h,
                           ),
                         ),
                       );
                     }).toList(),
                 options: CarouselOptions(
-                  height: 400,
+                  height: 400.h,
                   autoPlay: true,
                   autoPlayInterval: Duration(seconds: 2),
                   enlargeCenterPage: true,
@@ -58,20 +58,20 @@ class SourcePage extends StatelessWidget {
                 items:
                     imagePaths.map((path) {
                       return Container(
-                        margin: EdgeInsets.symmetric(horizontal: 10),
+                        margin: EdgeInsets.symmetric(horizontal: 10.w),
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(12.r),
                           color: Colors.white,
                           boxShadow: [
                             BoxShadow(
                               color: Colors.black12,
-                              blurRadius: 6,
+                              blurRadius: 6.r,
                               offset: Offset(0, 3),
                             ),
                           ],
                         ),
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(12.r),
                           child: Image.asset(
                             path,
                             fit: BoxFit.cover,
@@ -96,20 +96,20 @@ class SourcePage extends StatelessWidget {
                 items:
                     imagePaths.map((path) {
                       return Container(
-                        margin: EdgeInsets.symmetric(horizontal: 10),
+                        margin: EdgeInsets.symmetric(horizontal: 10.w),
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(12.r),
                           color: Colors.white,
                           boxShadow: [
                             BoxShadow(
                               color: Colors.black12,
-                              blurRadius: 6,
+                              blurRadius: 6.r,
                               offset: Offset(0, 3),
                             ),
                           ],
                         ),
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(12.r),
                           child: Image.asset(
                             path,
                             fit: BoxFit.cover,

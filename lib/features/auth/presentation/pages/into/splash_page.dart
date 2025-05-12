@@ -39,7 +39,7 @@ class _SplashPageState extends State<SplashPage> {
                 ),
               ),
               SizedBox(height: 15.h,),
-              Text('DinaKorean',style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold,color: Colors.white),),
+              Text('DinaKorean',style: TextStyle(fontSize: 40.sp,fontWeight: FontWeight.bold,color: Colors.white),),
               SizedBox(
                 height: 240.h,
               ),
@@ -49,7 +49,7 @@ class _SplashPageState extends State<SplashPage> {
                 child: LoadingIndicator(
                   indicatorType: Indicator.ballSpinFadeLoader,
                   colors: [Colors.white],
-                  strokeWidth: 2,
+                  strokeWidth: 2.w,
                 ),
               ),
             ],

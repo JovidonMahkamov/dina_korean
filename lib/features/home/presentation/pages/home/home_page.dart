@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:dina_korean_real/core/common/colors/app_colors.dart';
 import 'package:dina_korean_real/features/home/widgets/home/app_bar.dart';
 import 'package:dina_korean_real/features/home/widgets/home/home_listTiles.dart';
 import 'package:dina_korean_real/features/home/widgets/home/scroll_widget.dart';
@@ -46,13 +47,13 @@ bool isColor = true;
       },),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(15),
+          padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 15.h),
           child: Column(
             children: [
               Container(
-                padding: EdgeInsets.all(15),
+                padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 15.h),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(20.r),
                   gradient: LinearGradient(
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
@@ -62,8 +63,8 @@ bool isColor = true;
                     BoxShadow(
                       color: Colors.black12, // Shadow color
                       offset: Offset(0, 4), // Shadow position (x, y)
-                      blurRadius: 8, // How much the shadow is spread out
-                      spreadRadius: 3, // How far the shadow is spread
+                      blurRadius: 8.r, // How much the shadow is spread out
+                      spreadRadius: 3.r, // How far the shadow is spread
                     ),
                   ],
                 ),
@@ -91,7 +92,7 @@ bool isColor = true;
                     ),
                     GestureDetector(
                       child: Container(
-                        padding: EdgeInsets.all(4.w),
+                        padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 4.h),
                         decoration: BoxDecoration(
                           color: Color(0xffff8800),
                           borderRadius: BorderRadius.circular(20.r),
@@ -129,25 +130,23 @@ bool isColor = true;
               HomeListTile(
                 iconAvatar: Icon(
                   IconlyLight.profile,
-                  color: Colors.blue,
+                  color: Colors.blueAccent.shade700,
                   size: 35.sp,
                 ),
                 title: "O'quvchilar",
                 subtitle: "54",
-                circularColor: Color(0xFFE1F5FE),
-                backColor: isColor? Colors.white:Colors.grey,
+                circularColor: context.isDark? Colors.blueGrey: Color(0xFFE1F5FE),
               ),
               SizedBox(height: 20.h),
               HomeListTile(
                 iconAvatar: Icon(
                   IconlyLight.user,
-                  color: Colors.purpleAccent,
+                  color: Colors.purpleAccent.shade700,
                   size: 35.sp,
                 ),
                 title: "Guruhlar",
                 subtitle: "4",
-                circularColor: Color(0xFFF3E5F5),
-                backColor: isColor? Colors.white:Colors.grey,
+                circularColor:context.isDark? Colors.blueGrey: Color(0xFFF3E5F5),
               ),
               SizedBox(height: 20.h),
               HomeListTile(
@@ -158,8 +157,7 @@ bool isColor = true;
                 ),
                 title: "Natijalar",
                 subtitle: "30",
-                circularColor: Color(0xFFE1F4E2),
-                backColor: isColor? Colors.white:Colors.grey,
+                circularColor: context.isDark? Color(0xFF1B5E20): Color(0xFFE1F4E2),
               ),
               SizedBox(height: 20.h),
               HomeListTile(
@@ -170,8 +168,7 @@ bool isColor = true;
                 ),
                 title: "Qo'llanmalar",
                 subtitle: "26",
-                circularColor: Color(0xFFE8F5E9),
-                backColor: isColor? Colors.white:Colors.grey,
+                circularColor:context.isDark? Color(0xFF1B5E20): Color(0xFFE8F5E9),
               ),
               SizedBox(height: 10.h),
               Row(
@@ -179,7 +176,6 @@ bool isColor = true;
                   Text(
                     "Yangiliklar",
                     style: TextStyle(
-                      // color: Colors.black,
                       fontSize: 32.sp,
                       fontWeight: FontWeight.bold,
                     ),
@@ -216,7 +212,7 @@ bool isColor = true;
                     child: Center(
                       child: IconButton(
                         onPressed: () {
-                          _controller.previousPage();
+                          _controller.nextPage();
                         },
                         icon: Icon(
                           Icons.arrow_forward_ios,
@@ -230,11 +226,11 @@ bool isColor = true;
               ),
               SizedBox(height: 10.h),
               Container(
-                padding: EdgeInsets.only(left: 10, right: 10),
+                padding: EdgeInsets.symmetric(horizontal: 10.w),
                 height: 260.h,
-                width: double.infinity.w,
+                width: double.infinity,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color:context.isDark? Color(0xFF1E293B): Colors.white,
                   borderRadius: BorderRadius.circular(10.r),
                 ),
                 child: CarouselSlider.builder(
@@ -277,7 +273,8 @@ bool isColor = true;
                   ),
                 ),
               ),
-              SizedBox(height: 8.h,),
+
+              SizedBox(height: 20.h,),
               StudentRatingWidget(),
             ],
           ),
