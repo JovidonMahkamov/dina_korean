@@ -21,13 +21,18 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       );
       if (response.statusCode == 200 || response.statusCode == 201) {
         LoggerService.info('Login successful: ${response.data}');
+        dioClient.setToken(response.data['token']);
+        LoggerService.info(
+          'Token set successfully: ${response.data['token']}',);
         return LogInUserModel.fromJson(response.data);
       } else {
         LoggerService.warning("Login failed: ${response.statusCode}");
         throw Exception('Login failed: ${response.statusCode}');
       }
-    } catch (e) {
+    } catch (e,s) {
       LoggerService.error('Error during user login: $e');
+      print(e);
+      print(s);
       rethrow;
     }
   }

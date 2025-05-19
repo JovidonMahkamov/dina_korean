@@ -1,15 +1,20 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dina_korean_real/core/common/colors/app_colors.dart';
-import 'package:dina_korean_real/features/home/widgets/home/app_bar.dart';
-import 'package:dina_korean_real/features/home/widgets/home/home_listTiles.dart';
-import 'package:dina_korean_real/features/home/widgets/home/scroll_widget.dart';
+import 'package:dina_korean_real/features/home/presentation/bloc/home_event.dart';
+import 'package:dina_korean_real/features/home/presentation/bloc/statistic/statistic_bloc.dart';
+import 'package:dina_korean_real/features/home/presentation/bloc/statistic/statistic_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../core/dark_light/theme_changin.dart';
+import '../../widgets/home/app_bar.dart';
+import '../../widgets/home/home_listTiles.dart';
+import '../../widgets/home/scroll_widget.dart';
 
 class Home_Page extends ConsumerStatefulWidget {
   const Home_Page({super.key});
@@ -22,7 +27,7 @@ class _Home_PageState extends ConsumerState<Home_Page> {
   final Uri _dino_korean = Uri.parse('https://dinakoreanmasterclass.uz');
   final CarouselSliderController _controller = CarouselSliderController();
   int _currentIndex = 0;
-   bool isDarkMode = false;
+  bool isDarkMode = false;
 
   Future<void> _openDinaKorean() async {
     if (!await launchUrl(_dino_korean, mode: LaunchMode.externalApplication)) {
@@ -35,16 +40,25 @@ class _Home_PageState extends ConsumerState<Home_Page> {
     {'image': 'assets/home/purple.png', 'title': 'Topik.Di Premium'},
     {'image': 'assets/home/green.png', 'title': 'Topik.Di VIP'},
   ];
-bool isColor = true;
+  bool isColor = true;
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    context.read<StatisticBloc>().add(Statistic());
+
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar(onToggle: (bool ) {
-        ref.read(themeProvider.notifier).toggleTheme();
-        setState(() {
-          isDarkMode = isColor;
-        });
-      },),
+      appBar: MyAppBar(
+        onToggle: (bool) {
+          ref.read(themeProvider.notifier).toggleTheme();
+          setState(() {
+            isDarkMode = isColor;
+          });
+        },
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 15.h),
@@ -92,7 +106,10 @@ bool isColor = true;
                     ),
                     GestureDetector(
                       child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 4.h),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 4.w,
+                          vertical: 4.h,
+                        ),
                         decoration: BoxDecoration(
                           color: Color(0xffff8800),
                           borderRadius: BorderRadius.circular(20.r),
@@ -127,48 +144,101 @@ bool isColor = true;
                 ),
               ),
               SizedBox(height: 20.h),
-              HomeListTile(
-                iconAvatar: Icon(
-                  IconlyLight.profile,
-                  color: Colors.blueAccent.shade700,
-                  size: 35.sp,
-                ),
-                title: "O'quvchilar",
-                subtitle: "54",
-                circularColor: context.isDark? Colors.blueGrey: Color(0xFFE1F5FE),
-              ),
-              SizedBox(height: 20.h),
-              HomeListTile(
-                iconAvatar: Icon(
-                  IconlyLight.user,
-                  color: Colors.purpleAccent.shade700,
-                  size: 35.sp,
-                ),
-                title: "Guruhlar",
-                subtitle: "4",
-                circularColor:context.isDark? Colors.blueGrey: Color(0xFFF3E5F5),
-              ),
-              SizedBox(height: 20.h),
-              HomeListTile(
-                iconAvatar: Icon(
-                  IconlyLight.star,
-                  color: Colors.green,
-                  size: 35.sp,
-                ),
-                title: "Natijalar",
-                subtitle: "30",
-                circularColor: context.isDark? Color(0xFF1B5E20): Color(0xFFE1F4E2),
-              ),
-              SizedBox(height: 20.h),
-              HomeListTile(
-                iconAvatar: Icon(
-                  IconlyBold.document,
-                  color: Colors.green,
-                  size: 35.sp,
-                ),
-                title: "Qo'llanmalar",
-                subtitle: "26",
-                circularColor:context.isDark? Color(0xFF1B5E20): Color(0xFFE8F5E9),
+              BlocBuilder<StatisticBloc, StatisticState>(
+                builder: (context, state) {
+                  if (state is StatisticLoading) {
+                    return SizedBox(
+                      height: 350,
+                      child: ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        itemCount: 4,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: EdgeInsets.only(top: 12),
+                            child: Shimmer.fromColors(
+                              baseColor: Colors.grey[300]!,
+                              highlightColor: Colors.grey[100]!,
+                              child: Container(
+                                height: (70),
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                padding: EdgeInsets.all(8),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    );
+                  } else if (state is StatisticSuccess) {
+                    final statistics = state.dashboardEntity;
+                    return Column(
+                      children: [
+                        HomeListTile(
+                          iconAvatar: Icon(
+                            IconlyLight.profile,
+                            color: Colors.blueAccent.shade700,
+                            size: 35.sp,
+                          ),
+                          title: "O'quvchilar",
+                          subtitle: statistics.students.toString(),
+                          circularColor:
+                              context.isDark
+                                  ? Colors.blueGrey
+                                  : Color(0xFFE1F5FE),
+                        ),
+                        SizedBox(height: 20.h),
+                        HomeListTile(
+                          iconAvatar: Icon(
+                            IconlyLight.user,
+                            color: Colors.purpleAccent.shade700,
+                            size: 35.sp,
+                          ),
+                          title: "Guruhlar",
+                          subtitle: statistics.groups.toString(),
+                          circularColor:
+                              context.isDark
+                                  ? Colors.blueGrey
+                                  : Color(0xFFF3E5F5),
+                        ),
+                        SizedBox(height: 20.h),
+                        HomeListTile(
+                          iconAvatar: Icon(
+                            IconlyLight.star,
+                            color: Colors.green,
+                            size: 35.sp,
+                          ),
+                          title: "Natijalar",
+                          subtitle: statistics.results.toString(),
+                          circularColor:
+                              context.isDark
+                                  ? Color(0xFF1B5E20)
+                                  : Color(0xFFE1F4E2),
+                        ),
+                        SizedBox(height: 20.h),
+                        HomeListTile(
+                          iconAvatar: Icon(
+                            IconlyBold.document,
+                            color: Colors.green,
+                            size: 35.sp,
+                          ),
+                          title: "Qo'llanmalar",
+                          subtitle: statistics.teachers.toString(),
+                          circularColor:
+                              context.isDark
+                                  ? Color(0xFF1B5E20)
+                                  : Color(0xFFE8F5E9),
+                        ),
+                      ],
+                    );
+                  } else if (state is StatisticError) {
+                    return Center(child: Text(state.message));
+                  } else {
+                    return SizedBox();
+                  }
+                },
               ),
               SizedBox(height: 10.h),
               Row(
@@ -203,7 +273,7 @@ bool isColor = true;
                   SizedBox(width: 20.w),
 
                   Container(
-                    height:50.h,
+                    height: 50.h,
                     width: 50.w,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(100),
@@ -221,7 +291,6 @@ bool isColor = true;
                       ),
                     ),
                   ),
-
                 ],
               ),
               SizedBox(height: 10.h),
@@ -230,7 +299,7 @@ bool isColor = true;
                 height: 260.h,
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color:context.isDark? Color(0xFF1E293B): Colors.white,
+                  color: context.isDark ? Color(0xFF1E293B) : Colors.white,
                   borderRadius: BorderRadius.circular(10.r),
                 ),
                 child: CarouselSlider.builder(
@@ -274,7 +343,7 @@ bool isColor = true;
                 ),
               ),
 
-              SizedBox(height: 20.h,),
+              SizedBox(height: 20.h),
               StudentRatingWidget(),
             ],
           ),

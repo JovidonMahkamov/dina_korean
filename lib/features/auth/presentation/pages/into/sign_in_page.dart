@@ -70,6 +70,16 @@ class _SignInPageState extends State<SignInPage> {
       LoggerService.error("Error saving Auth Token: $error");
     });
   }
+  void saveAuthId(int id,) {
+    authLocalDataSource
+        .saveUserId(id)
+        .then((_) {
+      LoggerService.info("Auth Id saved : $id");
+    })
+        .catchError((error) {
+      LoggerService.error("Error saving Auth Id: $error");
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -121,6 +131,7 @@ class _SignInPageState extends State<SignInPage> {
                       passwordController.text,
                     );
                     saveAuthToken(state.user.token,);
+                    saveAuthId(state.user.id);
                     Navigator.pushReplacementNamed(context, RouteNames.bottomNavBar);
                   } else if (state is LogInUserError) {
                     ScaffoldMessenger.of(context).showSnackBar(
@@ -151,6 +162,8 @@ class _SignInPageState extends State<SignInPage> {
                   }
                 },
               ),
+              // ElevatedWidget(onPressed: (){Navigator.pushNamed(context, RouteNames.bottomNavBar);}, text: 'Sign In')
+
             ],
           ),
         ),

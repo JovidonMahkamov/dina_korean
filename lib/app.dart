@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'core/dark_light/theme_changin.dart';
 import 'core/route/route_generators.dart';
 import 'core/route/route_names.dart';
 
 class MyApp extends ConsumerWidget {
-  const MyApp({super.key});
+  final Box box;
+  const MyApp({super.key,required this.box});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

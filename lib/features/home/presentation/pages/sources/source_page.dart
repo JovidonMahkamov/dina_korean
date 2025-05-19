@@ -1,135 +1,51 @@
+import 'package:dina_korean_real/features/home/presentation/widgets/surces/string_wg.dart';
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class SourcePage extends StatelessWidget {
-  final List<String> imagePaths = [
-    'assets/sources/goblin.jpg',
-    'assets/sources/goblin.jpg',
-    'assets/sources/goblin.jpg',
-    'assets/sources/goblin.jpg',
-  ];
+import '../../widgets/surces/container_widget_source.dart';
 
+class SourcePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              CarouselSlider(
-                items:
-                    imagePaths.map((path) {
-                      return Container(
-                        margin: EdgeInsets.symmetric(horizontal: 10.w),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12.r),
-                          color: Colors.white,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black12,
-                              blurRadius: 6.r,
-                              offset: Offset(0, 3),
-                            ),
-                          ],
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(12.r),
-                          child: Image.asset(
-                            path,
-                            fit: BoxFit.cover,
-                            width: double.infinity,
-                            height: 400.h,
-                          ),
-                        ),
-                      );
-                    }).toList(),
-                options: CarouselOptions(
-                  height: 400.h,
-                  autoPlay: true,
-                  autoPlayInterval: Duration(seconds: 2),
-                  enlargeCenterPage: true,
-                  viewportFraction: 1.0,
-                  enableInfiniteScroll: true,
+          child: Padding(
+            padding: const EdgeInsets.all(15),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Drama va kinolar',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w800,
+                    fontSize: 25.sp,
+                  ),
                 ),
-              ),
-              SizedBox(height: 50.h),
-              CarouselSlider(
-                items:
-                    imagePaths.map((path) {
-                      return Container(
-                        margin: EdgeInsets.symmetric(horizontal: 10.w),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12.r),
-                          color: Colors.white,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black12,
-                              blurRadius: 6.r,
-                              offset: Offset(0, 3),
-                            ),
-                          ],
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(12.r),
-                          child: Image.asset(
-                            path,
-                            fit: BoxFit.cover,
-                            width: double.infinity,
-                            height: 400.h,
-                          ),
-                        ),
-                      );
-                    }).toList(),
-                options: CarouselOptions(
-                  height: 400.h,
-                  autoPlay: true,
-                  autoPlayInterval: Duration(seconds: 2),
-                  enlargeCenterPage: true,
-                  viewportFraction: 1.0,
-                  enableInfiniteScroll: true,
+                Text(
+                  "Kino va drama orqali kores tilini o'rganamiz",
+                  style: TextStyle(fontWeight: FontWeight.w400),
                 ),
-              ),
-              SizedBox(height: 50.h),
-
-              CarouselSlider(
-                items:
-                    imagePaths.map((path) {
-                      return Container(
-                        margin: EdgeInsets.symmetric(horizontal: 10.w),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12.r),
-                          color: Colors.white,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black12,
-                              blurRadius: 6.r,
-                              offset: Offset(0, 3),
-                            ),
-                          ],
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(12.r),
-                          child: Image.asset(
-                            path,
-                            fit: BoxFit.cover,
-                            width: double.infinity,
-                            height: 400.h,
-                          ),
-                        ),
-                      );
-                    }).toList(),
-                options: CarouselOptions(
-                  height: 400.h,
-                  autoPlay: true,
-                  autoPlayInterval: Duration(seconds: 2),
-                  enlargeCenterPage: true,
-                  viewportFraction: 1.0,
-                  enableInfiniteScroll: true,
+                Divider(),
+                SizedBox(height: 20.h),
+                ContainerWidget(dataPaths: StringWg.dataPath),
+                SizedBox(height: 30.h),
+                Text(
+                  'Foydali kanallar',
+                  style: TextStyle(
+                    fontSize: 25.sp,
+                    fontWeight: FontWeight.w800,
+                  ),
                 ),
-              ),
-              SizedBox(height: 50.h),
-            ],
+                Text(
+                  'Koreys tili uchun foydali youtube kanallar',
+                  style: TextStyle(fontWeight: FontWeight.w400),
+                ),
+                Divider(),
+                SizedBox(height: 20.h),
+                ContainerWidget(dataPaths: StringWg.dataPath1),
+              ],
+            ),
           ),
         ),
       ),
