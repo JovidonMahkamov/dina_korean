@@ -1,5 +1,5 @@
 
-import '../../../domain/entities/profile.dart';
+import '../../../../online_lesson/domain/entities/profile.dart';
 
 abstract class EditProfileState {
   const EditProfileState();

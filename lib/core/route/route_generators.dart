@@ -1,14 +1,14 @@
 import 'package:dina_korean_real/core/route/route_names.dart';
 import 'package:dina_korean_real/features/auth/presentation/pages/into/sign_in_page.dart';
-import 'package:dina_korean_real/features/home/presentation/pages/profile/edit_profile_page.dart';
-import 'package:dina_korean_real/features/home/presentation/pages/profile/profile_page.dart';
 import 'package:dina_korean_real/features/home/presentation/pages/results/result_details_page.dart';
 import 'package:flutter/material.dart';
 
 import '../../features/auth/presentation/pages/into/splash_page.dart';
-import '../../features/home/domain/entities/profile.dart';
+import '../../features/online_lesson/domain/entities/profile.dart';
 import '../../features/home/domain/entities/result.dart';
 import '../../features/home/presentation/pages/home/bottom_nav_bar.dart';
+import '../../features/online_lesson/presentation/pages/profile/edit_profile_page.dart';
+import '../../features/online_lesson/presentation/pages/profile/profile_page.dart';
 
 class AppRoute {
   BuildContext context;

@@ -1,14 +1,15 @@
-import 'package:dina_korean_real/features/home/domain/entities/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:iconly/iconly.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 
 import '../../../../../core/route/route_names.dart';
-import '../../bloc/home_event.dart';
 import '../../bloc/profile/profile_bloc.dart';
 import '../../bloc/profile/profile_state.dart';
+import '../../bloc/profile_event.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -21,9 +22,8 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   void initState() {
     super.initState();
-    context.read<ProfileBloc>().add(ProfileEvent());
+    context.read<ProfileBloc>().add(ProfileE());
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -72,14 +72,17 @@ class _ProfilePageState extends State<ProfilePage> {
                               height: 55.h,
                               width: 170.w,
                               child: ElevatedButton(
-                                onPressed: () async{
-                                  final updatedProfile = await Navigator.pushNamed(
-                                    context,
-                                    RouteNames.editProfile,
-                                    arguments: user,
-                                  );
+                                onPressed: () async {
+                                  final updatedProfile =
+                                      await Navigator.pushNamed(
+                                        context,
+                                        RouteNames.editProfile,
+                                        arguments: user,
+                                      );
                                   if (updatedProfile != null) {
-                                    context.read<ProfileBloc>().add(ProfileEvent());
+                                    context.read<ProfileBloc>().add(
+                                      ProfileE(),
+                                    );
                                   }
                                 },
                                 style: ElevatedButton.styleFrom(
@@ -157,6 +160,25 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                       SizedBox(height: 40.h),
                       _infoRow('Telefon raqam', Icons.phone, user.phone),
+                      SizedBox(height: 20.h),
+                      Row(
+                        children: [
+                          Icon(IconlyBold.logout, color: Colors.red),
+                          TextButton(
+                            onPressed: ()  {
+                              showSuccessDialog(context);
+                            },
+                            child: Text(
+                              'Log Out',
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 20.sp,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ),
@@ -188,6 +210,80 @@ class _ProfilePageState extends State<ProfilePage> {
           ],
         ),
       ],
+    );
+  }
+
+  void showSuccessDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          backgroundColor: Colors.white,
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const SizedBox(height: 20),
+                const Text(
+                  "Accountdan chiqmoqchimisiz ?",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.blue,
+                    fontSize: 18,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                const SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child:
+                         ElevatedButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: Text("Yo'q"),
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                        ),
+                      ),
+                    SizedBox(width: 20.w,),
+                    Expanded(
+                      child:
+                         ElevatedButton(
+                          onPressed: () async {
+                            var box = Hive.box('authBox');
+                            await box.clear();
+                            Navigator.pushReplacementNamed(
+                                context,
+                                RouteNames.signInPage,);
+                          },
+                          child: Text('Ha'),
+                          style: ElevatedButton.styleFrom(
+                            foregroundColor: Colors.white,
+                            backgroundColor: Colors.blueAccent,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                        ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

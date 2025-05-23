@@ -4,7 +4,7 @@ import 'package:dina_korean_real/features/home/presentation/pages/sources/source
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
-import '../profile/profile_page.dart';
+import '../../../../online_lesson/presentation/pages/profile/profile_page.dart';
 import 'home_page.dart';
 
 class BottomNavBarPage extends StatefulWidget {

@@ -1,6 +1,6 @@
 import 'package:dina_korean_real/features/home/data/datasource/remoute/home_remoute_data_source.dart';
 import 'package:dina_korean_real/features/home/data/model/dashboard_model.dart';
-import 'package:dina_korean_real/features/home/data/model/profile_model.dart';
+import 'package:dina_korean_real/features/online_lesson/data/model/profile_model.dart';
 import 'package:dina_korean_real/features/home/data/model/result_model.dart';
 import 'package:dio/dio.dart';
 

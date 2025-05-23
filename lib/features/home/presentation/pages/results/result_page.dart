@@ -81,9 +81,7 @@ class _ResultPageState extends State<ResultPage> {
                       );
                     } else if (state is ResultSuccess) {
                       final List<Result> result = state.result;
-
                       return GridView.builder(
-                        // padding: const EdgeInsets.all(8),
                         gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,

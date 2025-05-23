@@ -123,7 +123,15 @@ class _SignInPageState extends State<SignInPage> {
               Expanded(
                 child: SizedBox(),
               ),
-              BlocConsumer<LogInUserBloc, LogInUserState>(
+          BlocListener<LogInUserBloc, LogInUserState>(
+            listener: (context, state) {
+              if (state is LogInUserError) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text(state.message,style: TextStyle(),)),
+                );
+              }
+            },
+            child:BlocConsumer<LogInUserBloc, LogInUserState>(
                 listener: (context, state) {
                   if (state is LogInUserSuccess) {
                     saveRememberMe(
@@ -133,13 +141,6 @@ class _SignInPageState extends State<SignInPage> {
                     saveAuthToken(state.user.token,);
                     saveAuthId(state.user.id);
                     Navigator.pushReplacementNamed(context, RouteNames.bottomNavBar);
-                  } else if (state is LogInUserError) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(state.message),
-                        backgroundColor: Colors.red,
-                      ),
-                    );
                   }
                 },
                 builder: (context, state) {
@@ -161,7 +162,7 @@ class _SignInPageState extends State<SignInPage> {
                     );
                   }
                 },
-              ),
+              ),)
               // ElevatedWidget(onPressed: (){Navigator.pushNamed(context, RouteNames.bottomNavBar);}, text: 'Sign In')
 
             ],

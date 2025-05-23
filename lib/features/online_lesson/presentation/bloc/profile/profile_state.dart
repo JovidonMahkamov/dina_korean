@@ -1,4 +1,4 @@
-import 'package:dina_korean_real/features/home/domain/entities/profile.dart';
+import 'package:dina_korean_real/features/online_lesson/domain/entities/profile.dart';
 
 abstract class ProfileState {
   const ProfileState();

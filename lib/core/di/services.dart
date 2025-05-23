@@ -3,11 +3,9 @@ import 'package:dina_korean_real/features/home/data/datasource/remoute/home_remo
 import 'package:dina_korean_real/features/home/data/repository/home_repo_impl.dart';
 import 'package:dina_korean_real/features/home/domain/repository/home_repo.dart';
 import 'package:dina_korean_real/features/home/domain/usecase/dashboard_use_case.dart';
-import 'package:dina_korean_real/features/home/domain/usecase/edit_profile_use_case.dart';
-import 'package:dina_korean_real/features/home/domain/usecase/profile_use_case.dart';
+import 'package:dina_korean_real/features/online_lesson/domain/use_case/edit_profile_use_case.dart';
+import 'package:dina_korean_real/features/online_lesson/domain/use_case/profile_use_case.dart';
 import 'package:dina_korean_real/features/home/domain/usecase/result_use_case.dart';
-import 'package:dina_korean_real/features/home/presentation/bloc/edit_profile/edit_profile_bloc.dart';
-import 'package:dina_korean_real/features/home/presentation/bloc/profile/profile_bloc.dart';
 import 'package:dina_korean_real/features/home/presentation/bloc/result/result_bloc.dart';
 import 'package:dina_korean_real/features/home/presentation/bloc/statistic/statistic_bloc.dart';
 import 'package:dio/dio.dart';
@@ -24,6 +22,8 @@ import '../../features/auth/data/repository/auth_repository_impl.dart';
 import '../../features/auth/domain/usecase/log_in_user_use_case.dart';
 import '../../features/auth/presentation/bloc/log_in/log_in_bloc.dart';
 import '../../features/home/data/datasource/remoute/home_remoute_data_source.dart';
+import '../../features/online_lesson/presentation/bloc/edit_profile/edit_profile_bloc.dart';
+import '../../features/online_lesson/presentation/bloc/profile/profile_bloc.dart';
 
 final sl = GetIt.instance;
 

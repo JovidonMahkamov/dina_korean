@@ -5,11 +5,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 
 import '../../../../auth/presentation/widgets/text_field_widget.dart';
-import '../../../domain/entities/profile.dart';
+import '../../../../home/presentation/bloc/home_event.dart';
+import '../../../../online_lesson/domain/entities/profile.dart';
 import '../../bloc/edit_profile/edit_profile_bloc.dart';
 import '../../bloc/edit_profile/etid_profile_state.dart';
-import '../../bloc/home_event.dart';
 import '../../bloc/profile/profile_bloc.dart';
+import '../../bloc/profile_event.dart';
 
 class EditProfilePage extends StatefulWidget {
   final Profile profile;
@@ -36,7 +37,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
     userNameController = TextEditingController(text: profile.login);
     phoneController = TextEditingController(text: profile.phone);
     telegramController = TextEditingController(text: profile.telegramId);
-    context.read<ProfileBloc>().add(ProfileEvent());
+    context.read<ProfileBloc>().add(ProfileE());
   }
 
   @override

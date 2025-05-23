@@ -1,13 +1,15 @@
-import 'package:dina_korean_real/features/home/domain/usecase/profile_use_case.dart';
+import 'package:dina_korean_real/features/online_lesson/domain/use_case/profile_use_case.dart';
 import 'package:dina_korean_real/features/home/presentation/bloc/home_event.dart';
-import 'package:dina_korean_real/features/home/presentation/bloc/profile/profile_state.dart';
+import 'package:dina_korean_real/features/online_lesson/presentation/bloc/profile/profile_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ProfileBloc extends Bloc<HomeEvent, ProfileState> {
+import '../profile_event.dart';
+
+class ProfileBloc extends Bloc<ProfileE, ProfileState> {
   final ProfileUseCase profileUseCase;
 
   ProfileBloc(this.profileUseCase) : super(ProfileInitial()) {
-    on<ProfileEvent>(onLogInUser);
+    on<ProfileE>(onLogInUser);
   }
 
   Future<void> onLogInUser(event, emit) async {

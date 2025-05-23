@@ -1,5 +1,3 @@
-import 'package:dina_korean_real/features/home/presentation/bloc/edit_profile/edit_profile_bloc.dart';
-import 'package:dina_korean_real/features/home/presentation/bloc/profile/profile_bloc.dart';
 import 'package:dina_korean_real/features/home/presentation/bloc/result/result_bloc.dart';
 import 'package:dina_korean_real/features/home/presentation/bloc/statistic/statistic_bloc.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'core/di/services.dart';
 import 'features/auth/presentation/bloc/log_in/log_in_bloc.dart';
+import 'features/online_lesson/presentation/bloc/edit_profile/edit_profile_bloc.dart';
+import 'features/online_lesson/presentation/bloc/profile/profile_bloc.dart';
 
 class MyBlocProvider extends StatelessWidget {
   const MyBlocProvider({super.key, required this.child});

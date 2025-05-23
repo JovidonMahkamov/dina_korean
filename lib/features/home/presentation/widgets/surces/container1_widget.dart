@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class ContainerWidget extends StatefulWidget {
+class Container1Widget extends StatefulWidget {
   final List<Map<dynamic,dynamic>> dataPaths;
-  const ContainerWidget({super.key,required this.dataPaths});
+  const Container1Widget({super.key,required this.dataPaths});
 
   @override
-  State<ContainerWidget> createState() => _ContainerWidgetState();
+  State<Container1Widget> createState() => _Container1WidgetState();
 }
 
-class _ContainerWidgetState extends State<ContainerWidget> {
+class _Container1WidgetState extends State<Container1Widget> {
 
 
   @override
@@ -31,16 +31,16 @@ class _ContainerWidgetState extends State<ContainerWidget> {
         return GestureDetector(
           onTap: _openDinaKorean,
           child: Container(
-            height: 600.h,
+            height: 400.h,
             width: MediaQuery.of(context).size.width * 0.8,
             padding: EdgeInsets.only(
               top: 20,
               right: 20,
               left: 20,
-              bottom: 20,
+              bottom: 10,
             ),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15.r),
+              borderRadius: BorderRadius.circular(12.r),
               color: Colors.grey[300],
               boxShadow: [
                 BoxShadow(
@@ -55,16 +55,16 @@ class _ContainerWidgetState extends State<ContainerWidget> {
                 Expanded(
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(12.r),
-                    child: CircleAvatar(
-                      child: Image.asset(
-                        path.toString(),
-                        fit: BoxFit.contain,
-                        gaplessPlayback: true,
-                      ),
+                    child: Image.asset(
+                      path.toString(),
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                      height: 500.h,
+                      // gaplessPlayback: true,
                     ),
                   ),
                 ),
-                 SizedBox(height: 25.h,),
+                SizedBox(height: 25.h,),
                 Text(title,style: TextStyle(fontSize: 16.sp),)
               ],
             ),
@@ -72,7 +72,7 @@ class _ContainerWidgetState extends State<ContainerWidget> {
         );
       }).toList(),
       options: CarouselOptions(
-        height: 600.h,
+        height: 400.h,
         autoPlay: true,
         autoPlayInterval: Duration(seconds: 2),
         enlargeCenterPage: true,

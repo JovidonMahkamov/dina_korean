@@ -1,6 +1,6 @@
-import 'package:dina_korean_real/features/home/domain/usecase/edit_profile_use_case.dart';
+import 'package:dina_korean_real/features/online_lesson/domain/use_case/edit_profile_use_case.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../home_event.dart';
+import '../profile_event.dart';
 import 'etid_profile_state.dart';
 
 class EditProfileBloc extends Bloc<EditProfilEvent, EditProfileState> {
