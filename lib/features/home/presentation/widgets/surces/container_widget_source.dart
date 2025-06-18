@@ -55,12 +55,10 @@ class _ContainerWidgetState extends State<ContainerWidget> {
                 Expanded(
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(12.r),
-                    child: CircleAvatar(
-                      child: Image.asset(
-                        path.toString(),
-                        fit: BoxFit.contain,
-                        gaplessPlayback: true,
-                      ),
+                    child: Image.asset(
+                      path.toString(),
+                      fit: BoxFit.contain,
+                      gaplessPlayback: true,
                     ),
                   ),
                 ),

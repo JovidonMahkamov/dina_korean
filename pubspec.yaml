@@ -38,7 +38,6 @@ dependencies:
   get_it: ^8.0.3
   pdf: ^3.11.3
   percent_indicator: ^4.2.4
-  video_player: ^2.9.2
   go_router: ^14.8.0
   easy_localization: ^3.0.7+1
   permission_handler: ^11.3.1
@@ -68,6 +67,13 @@ dependencies:
   get_storage: ^2.1.1
   shimmer: ^3.0.0
   font_awesome_flutter: ^10.8.0
+  video_player: ^2.9.5
+  audioplayers: ^6.4.0
+  expansion_tile_card: ^3.0.0
+  mockito: ^5.4.6
+  flutter_inappwebview: ^6.1.5
+  webview_flutter: ^4.13.0
+  connectivity_plus: ^6.1.4
 
 
 
@@ -101,6 +107,8 @@ flutter:
     - assets/sources/
     - assets/profile/
     - assets/online_lessons/
+    - assets/video/
+    - assets/music_player/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
