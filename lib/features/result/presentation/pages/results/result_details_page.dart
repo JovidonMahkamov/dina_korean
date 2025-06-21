@@ -23,10 +23,6 @@ class ResultDetailPage extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               const SizedBox(height: 10),
-              Text(
-                "ID: ${result.id}", // yoki boshqa ma’lumotlar
-                style: const TextStyle(fontSize: 16),
-              ),
             ],
           ),
         ),

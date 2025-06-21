@@ -15,10 +15,14 @@ class LessonDetailE extends CourseEvent{
   final int lessonId;
   LessonDetailE({required this.lessonId});
 }
-class CheckAnswerEvent extends CourseEvent {
+class CompleteLessonSubmitted extends CourseEvent {
   final int courseId;
   final int lessonId;
-  final String answer;
-  CheckAnswerEvent({required this.courseId, required this.lessonId, required this.answer});
-}
 
+   CompleteLessonSubmitted({
+    required this.courseId,
+    required this.lessonId,
+  });
+
+  List<Object> get props => [courseId, lessonId];
+}

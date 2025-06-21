@@ -5,12 +5,8 @@ import 'package:url_launcher/url_launcher.dart';
 
 class Container2Widget extends StatefulWidget {
   final List<Map<dynamic, dynamic>> dataPaths;
-  final String path;
-  final String title;
-  final String urlSee;
-  final String urlSave;
 
-  const Container2Widget({super.key, required this.dataPaths, required this.path, required this.title, required this.urlSee, required this.urlSave});
+  const Container2Widget({super.key, required this.dataPaths,});
 
   @override
   State<Container2Widget> createState() => _Container2WidgetState();
@@ -22,10 +18,10 @@ class _Container2WidgetState extends State<Container2Widget> {
     return CarouselSlider(
       items:
           widget.dataPaths.map((data) {
-            final String path = data[widget.path]!;
-            final String title = data[widget.title]!;
-            final String urlSee = data[widget.urlSee] ?? '';
-            final Uri _dino_korean = Uri.parse(urlSee);
+            final String imageUrl = data['imageUrl']!;
+            final String title = data['title']!;
+            final String bookUrl = data['bookUrl'] ?? '';
+            final Uri _dino_korean = Uri.parse(bookUrl);
             Future<void> _openDinaKorean() async {
               if (!await launchUrl(
                 _dino_korean,
@@ -34,8 +30,8 @@ class _Container2WidgetState extends State<Container2Widget> {
                 throw 'Web Sayt ochilmadi: $_dino_korean';
               }
             }
-            final String urlSave = data[widget.urlSave] ?? '';
-            final Uri _dino_korean1 = Uri.parse(urlSave);
+            final String downloadLink = data['downloadLink'] ?? '';
+            final Uri _dino_korean1 = Uri.parse(downloadLink);
             Future<void> _openDinaKorean1() async {
               if (!await launchUrl(
                 _dino_korean1,
@@ -69,8 +65,8 @@ class _Container2WidgetState extends State<Container2Widget> {
                   Expanded(
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(12.r),
-                      child: Image.asset(
-                        path.toString(),
+                      child: Image.network(
+                        imageUrl.toString(),
                         fit: BoxFit.cover,
                         width: double.infinity,
                         height: 500.h,

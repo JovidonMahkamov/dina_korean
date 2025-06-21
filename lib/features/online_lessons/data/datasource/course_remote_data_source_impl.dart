@@ -92,16 +92,18 @@ class CourseRemoteDataSourceImpl implements CourseRemoteDataSource {
   }
 
   @override
-  Future<bool> postCheek({
+  Future<CourseWithSectionsModel?> completeLesson({
     required int courseId,
     required int lessonId,
-    required String answer,
   }) async {
     try {
       final token = authLocalDataSource.getAuthToken();
+
       final response = await dio.post(
         'https://api.dinakorean.uz/complete-lesson/$lessonId',
-        data: {'courseId': courseId, 'answer': answer},
+        data: {
+          "courseId": courseId,
+        },
         options: Options(
           headers: {
             'Authorization': 'Bearer $token',
@@ -111,13 +113,13 @@ class CourseRemoteDataSourceImpl implements CourseRemoteDataSource {
       );
 
       if (response.statusCode == 200) {
-        return response.data['isCorrect'] == true;
+        return CourseWithSectionsModel.fromJson(response.data);
       } else {
-        return false;
+        return null;
       }
     } catch (e) {
-      LoggerService.error('Answer check failed: $e');
-      return false;
+      LoggerService.error('❌ Complete lesson error: $e');
+      return null;
     }
   }
 }

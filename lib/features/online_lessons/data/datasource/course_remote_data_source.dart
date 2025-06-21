@@ -10,8 +10,11 @@ abstract class CourseRemoteDataSource {
   Future<CourseWithSectionsModel> getCourseWithSections({
     required CourseEntity courseId,
   });
-  Future<LessonDetailsEntity> getLessonDetail({
+
+  Future<LessonDetailsEntity> getLessonDetail({required int lessonId});
+
+  Future<CourseWithSectionsModel?> completeLesson({
+    required int courseId,
     required int lessonId,
   });
-  Future<bool> postCheek({ required int courseId, required int lessonId, required String answer});
 }

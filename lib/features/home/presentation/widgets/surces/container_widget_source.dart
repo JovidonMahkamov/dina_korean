@@ -19,10 +19,10 @@ class _ContainerWidgetState extends State<ContainerWidget> {
     return CarouselSlider(
       items:
       widget.dataPaths.map((data) {
-        final String path = data['path']!;
+        final String imageUrl = data['imageUrl']!;
         final String title = data['title']!;
-        final String url = data['url']??'';
-        final Uri _dino_korean = Uri.parse(url);
+        final String nextUrl = data['nextUrl']??'';
+        final Uri _dino_korean = Uri.parse(nextUrl);
         Future<void> _openDinaKorean() async {
           if (!await launchUrl(_dino_korean, mode: LaunchMode.externalApplication)) {
             throw 'Web Sayt ochilmadi: $_dino_korean';
@@ -55,8 +55,8 @@ class _ContainerWidgetState extends State<ContainerWidget> {
                 Expanded(
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(12.r),
-                    child: Image.asset(
-                      path.toString(),
+                    child: Image.network(
+                      imageUrl.toString(),
                       fit: BoxFit.contain,
                       gaplessPlayback: true,
                     ),

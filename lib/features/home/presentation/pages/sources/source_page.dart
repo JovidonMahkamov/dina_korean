@@ -60,7 +60,37 @@ class SourcePage extends StatelessWidget {
                 ),
                 Divider(),
                 SizedBox(height: 20.h),
-                Container2Widget(dataPaths: StringWg.dataPath1, path: 'path', title: 'title', urlSee: 'urlSee', urlSave: 'urlSave',)
+                Container2Widget(dataPaths: StringWg.bookData,),
+                SizedBox(height: 30.h),
+                Text(
+                  'Topik',
+                  style: TextStyle(
+                    fontSize: 25.sp,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+                Text(
+                  'Topic uchun barcha ishlatiladigan kitoblar',
+                  style: TextStyle(fontWeight: FontWeight.w400),
+                ),
+                Divider(),
+                SizedBox(height: 20.h),
+                Container2Widget(dataPaths: StringWg.topikBook,),
+                SizedBox(height: 30.h),
+                Text(
+                  "Lug'atlar",
+                  style: TextStyle(
+                    fontSize: 25.sp,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+                Text(
+                  "Topic uchun barcha Lug'at kitoblar",
+                  style: TextStyle(fontWeight: FontWeight.w400),
+                ),
+                Divider(),
+                SizedBox(height: 20.h),
+                Container2Widget(dataPaths: StringWg.vocobularyBook,)
               ],
             ),
           ),

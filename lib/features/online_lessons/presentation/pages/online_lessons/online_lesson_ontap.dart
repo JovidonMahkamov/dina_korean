@@ -23,11 +23,11 @@ class OnlineLessonOntapPage extends StatefulWidget {
 }
 
 class _OnlineLessonOntapPageState extends State<OnlineLessonOntapPage> {
-
   Future<bool> checkInternetConnection() async {
     final connectivityResult = await Connectivity().checkConnectivity();
     return connectivityResult != ConnectivityResult.none;
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,7 +67,9 @@ class _OnlineLessonOntapPageState extends State<OnlineLessonOntapPage> {
                   ),
                   SizedBox(height: 10.h),
                   ClipRRect(
-                    borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(12),
+                    ),
                     child: CachedNetworkImage(
                       imageUrl: widget.course.previewImage,
                       fit: BoxFit.cover,
@@ -75,7 +77,7 @@ class _OnlineLessonOntapPageState extends State<OnlineLessonOntapPage> {
                       height: 180.h,
                       placeholder:
                           (context, url) =>
-                          Container(color: Colors.grey[300], height: 180.h),
+                              Container(color: Colors.grey[300], height: 180.h),
                       errorWidget: (context, url, error) => Icon(Icons.error),
                     ),
                   ),
@@ -97,7 +99,8 @@ class _OnlineLessonOntapPageState extends State<OnlineLessonOntapPage> {
                         shrinkWrap: true,
                         itemCount: widget.course.learning.split(', ').length,
                         itemBuilder: (context, index) {
-                          final item = widget.course.learning.split(', ')[index];
+                          final item =
+                              widget.course.learning.split(', ')[index];
                           final parts = item.split(' - ');
                           final kr = parts[0];
                           final uz = parts.length > 1 ? parts[1] : '';
@@ -111,7 +114,10 @@ class _OnlineLessonOntapPageState extends State<OnlineLessonOntapPage> {
                             ),
                             title: Text(
                               '$kr - $uz',
-                              style: TextStyle(fontSize: 15,fontWeight: FontWeight.w600),
+                              style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                           );
                         },
@@ -361,12 +367,65 @@ class _OnlineLessonOntapPageState extends State<OnlineLessonOntapPage> {
                             duration: "21:59",
                             onTap: () {},
                           ),
+                          VideoLesson(
+                            text: '25-Dars. 지요 / (이)지요 , 고 있어요',
+                            duration: "23:34",
+                            onTap: () {},
+                          ),
+                          VideoLesson(
+                            text: '26-Dars. 못 , 아서/어서 ',
+                            duration: "32:17",
+                            onTap: () {},
+                          ),
                         ],
                       ),
                       SizedBox(height: 5.h),
-                      MyTileCard(title: "7.Modul: Sayohat va Yo'l", items: []),
+                      MyTileCard(
+                        title: "7.Modul: Sayohat va Yo'l",
+                        items: [
+                          VideoLesson(
+                            text: '27-Dars. (으)려고 하다 / 에서 , 까지',
+                            duration: "16:18",
+                            onTap: () {},
+                          ),
+                          VideoLesson(
+                            text: '28-Dars. 아/어 주세요 / -(으)로',
+                            duration: "26:56",
+                            onTap: () {},
+                          ),
+                          VideoLesson(
+                            text: "29-Dars. 'ㄹ-틸락' / (으)ㄴ",
+                            duration: "29:18",
+                            onTap: () {},
+                          ),
+                        ],
+                      ),
                       SizedBox(height: 5.h),
-                      MyTileCard(title: "8.Modul: Rejalar va Orzular", items: []),
+                      MyTileCard(
+                        title: "8.Modul: Rejalar va Orzular",
+                        items: [
+                          VideoLesson(
+                            text: "30-Dars. 한테/께 , 아/어 보세요 ",
+                            duration: "21:16",
+                            onTap: () {},
+                          ),
+                          VideoLesson(
+                            text: "31-Dars. - (으)면 / Fe' l- 는 ",
+                            duration: "16:54",
+                            onTap: () {},
+                          ),
+                          VideoLesson(
+                            text: "32-Dars. “-고 싶다” / “-고 싶어 하다”",
+                            duration: "13:37",
+                            onTap: () {},
+                          ),
+                          VideoLesson(
+                            text: "33-Dars.",
+                            duration: "18:04",
+                            onTap: () {},
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                   SizedBox(height: 20.h),
@@ -391,7 +450,8 @@ class _OnlineLessonOntapPageState extends State<OnlineLessonOntapPage> {
                           ),
                         ),
                         SizedBox(height: 10.h),
-                        Text(widget.course.requirements,
+                        Text(
+                          widget.course.requirements,
                           style: TextStyle(fontSize: 16.sp),
                         ),
                       ],
@@ -410,18 +470,18 @@ class _OnlineLessonOntapPageState extends State<OnlineLessonOntapPage> {
                       boxShadow: [
                         context.isDark
                             ? BoxShadow(
-                          color: Colors.white.withOpacity(0.5),
-                          blurRadius: 4,
-                          // soft blur
-                          offset: Offset(0, 7),
-                        )
+                              color: Colors.white.withOpacity(0.5),
+                              blurRadius: 4,
+                              // soft blur
+                              offset: Offset(0, 7),
+                            )
                             : BoxShadow(
-                          color: Colors.grey.withOpacity(0.6),
-                          // light white shadow
-                          blurRadius: 10,
-                          // soft blur
-                          offset: Offset(0, 4), // shadow direction: bottom
-                        ),
+                              color: Colors.grey.withOpacity(0.6),
+                              // light white shadow
+                              blurRadius: 10,
+                              // soft blur
+                              offset: Offset(0, 4), // shadow direction: bottom
+                            ),
                       ],
                     ),
                     child: Column(
@@ -456,8 +516,9 @@ class _OnlineLessonOntapPageState extends State<OnlineLessonOntapPage> {
                           ),
                           onPressed: () {
                             Navigator.pushNamed(
-                                context,
-                                RouteNames.onlineLessonDetail,arguments: widget.course
+                              context,
+                              RouteNames.onlineLessonDetail,
+                              arguments: widget.course,
                             );
                           },
                           child: Center(
@@ -467,7 +528,9 @@ class _OnlineLessonOntapPageState extends State<OnlineLessonOntapPage> {
                                 fontWeight: FontWeight.w600,
                                 fontSize: 16.sp,
                                 color:
-                                context.isDark ? Colors.white : Colors.black,
+                                    context.isDark
+                                        ? Colors.white
+                                        : Colors.black,
                               ),
                             ), // Text
                           ), // Center

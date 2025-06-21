@@ -1,11 +1,15 @@
+import '../entities/course_with_sections_entity.dart';
 import '../repository/course_repo.dart';
 
-class PostUserCheek {
-  final CourseRepo courseRepo;
+class CompleteLessonUseCase {
+  final CourseRepo repo;
 
-  PostUserCheek(this.courseRepo);
+  CompleteLessonUseCase(this.repo);
 
-  Future<bool> call({required int courseId, required int lessonId, required String answer}) {
-    return courseRepo.postCheek(courseId: courseId,lessonId: lessonId, answer: answer);
+  Future<CourseWithSectionsEntity?> call({
+    required int courseId,
+    required int lessonId,
+  }) {
+    return repo.completeLesson(courseId: courseId, lessonId: lessonId);
   }
 }

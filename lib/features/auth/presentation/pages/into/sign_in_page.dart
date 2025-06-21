@@ -26,12 +26,14 @@ class _SignInPageState extends State<SignInPage> {
   final authLocalDataSource = sl<AuthLocalDataSource>();
   bool card = true;
   bool eye = true;
+
   @override
   void dispose() {
     passwordController.dispose();
     emailController.dispose();
     super.dispose();
   }
+
   void signInUser() {
     final email = emailController.text.trim();
     final password = passwordController.text.trim();
@@ -50,35 +52,38 @@ class _SignInPageState extends State<SignInPage> {
       context,
     ).add(LoginUser(email: email, password: password));
   }
+
   void saveRememberMe(String email, String password) {
     authLocalDataSource
         .saveRememberMe(email, password)
         .then((_) {
-      LoggerService.info("Remember Me saved : $email - $password");
-    })
+          LoggerService.info("Remember Me saved : $email - $password");
+        })
         .catchError((error) {
-      LoggerService.error("Error saving Remember Me: $error");
-    });
+          LoggerService.error("Error saving Remember Me: $error");
+        });
   }
-  void saveAuthToken(String token,) {
+
+  void saveAuthToken(String token) {
     authLocalDataSource
         .saveAuthToken(token)
         .then((_) {
-      LoggerService.info("Auth Token saved : $token");
-    })
+          LoggerService.info("Auth Token saved : $token");
+        })
         .catchError((error) {
-      LoggerService.error("Error saving Auth Token: $error");
-    });
+          LoggerService.error("Error saving Auth Token: $error");
+        });
   }
-  void saveAuthId(int id,) {
+
+  void saveAuthId(int id) {
     authLocalDataSource
         .saveUserId(id)
         .then((_) {
-      LoggerService.info("Auth Id saved : $id");
-    })
+          LoggerService.info("Auth Id saved : $id");
+        })
         .catchError((error) {
-      LoggerService.error("Error saving Auth Id: $error");
-    });
+          LoggerService.error("Error saving Auth Id: $error");
+        });
   }
 
   @override
@@ -120,51 +125,54 @@ class _SignInPageState extends State<SignInPage> {
                 textEditingController: passwordController,
                 obscureText: eye,
               ),
-              Expanded(
-                child: SizedBox(),
-              ),
-          BlocListener<LogInUserBloc, LogInUserState>(
-            listener: (context, state) {
-              if (state is LogInUserError) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(state.message,style: TextStyle(),)),
-                );
-              }
-            },
-            child:BlocConsumer<LogInUserBloc, LogInUserState>(
+              Expanded(child: SizedBox()),
+              BlocListener<LogInUserBloc, LogInUserState>(
                 listener: (context, state) {
-                  if (state is LogInUserSuccess) {
-                    saveRememberMe(
-                      emailController.text,
-                      passwordController.text,
+                  if (state is LogInUserError) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(state.message, style: TextStyle()),
+                      ),
                     );
-                    saveAuthToken(state.user.token,);
-                    saveAuthId(state.user.id);
-                    Navigator.pushReplacementNamed(context, RouteNames.bottomNavBar);
                   }
                 },
-                builder: (context, state) {
-                  if (state is LogInUserLoading) {
-                    return const Center(
-                      child: SizedBox(
-                        width: 60,
-                        height: 60,
-                        child: LoadingIndicator(
-                          indicatorType: Indicator.ballSpinFadeLoader,
-                          colors: [Colors.blueAccent],
-                          strokeWidth: 2,
+                child: BlocConsumer<LogInUserBloc, LogInUserState>(
+                  listener: (context, state) {
+                    if (state is LogInUserSuccess) {
+                      saveRememberMe(
+                        emailController.text,
+                        passwordController.text,
+                      );
+                      saveAuthToken(state.user.token);
+                      saveAuthId(state.user.id);
+                      Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        RouteNames.bottomNavBar,(route) => false,
+                      );
+                    }
+                  },
+                  builder: (context, state) {
+                    if (state is LogInUserLoading) {
+                      return const Center(
+                        child: SizedBox(
+                          width: 60,
+                          height: 60,
+                          child: LoadingIndicator(
+                            indicatorType: Indicator.ballSpinFadeLoader,
+                            colors: [Colors.blueAccent],
+                            strokeWidth: 2,
+                          ),
                         ),
-                      ),);
-                  } else {
-                    return ElevatedWidget(
-                      text: "Sign In",
-                      onPressed: signInUser,
-                    );
-                  }
-                },
-              ),)
-              // ElevatedWidget(onPressed: (){Navigator.pushNamed(context, RouteNames.bottomNavBar);}, text: 'Sign In')
-
+                      );
+                    } else {
+                      return ElevatedWidget(
+                        text: "Sign In",
+                        onPressed: signInUser,
+                      );
+                    }
+                  },
+                ),
+              ),
             ],
           ),
         ),

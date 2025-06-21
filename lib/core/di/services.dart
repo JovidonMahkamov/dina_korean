@@ -38,7 +38,7 @@ import '../../features/auth/domain/usecase/log_in_user_use_case.dart';
 import '../../features/auth/presentation/bloc/log_in/log_in_bloc.dart';
 import '../../features/home/data/datasource/remoute/home_remoute_data_source.dart';
 import '../../features/home/data/datasource/remoute/home_remoute_data_source_impl.dart';
-import '../../features/online_lessons/presentation/bloc/user_cheek/user_cheek_bloc.dart';
+import '../../features/online_lessons/presentation/bloc/complate_lesson/complate_lesson_bloc.dart';
 import '../../features/profile/domain/use_case/edit_profile_use_case.dart';
 import '../../features/profile/domain/use_case/profile_use_case.dart';
 import '../../features/profile/presentation/bloc/edit_profile/edit_profile_bloc.dart';
@@ -114,7 +114,7 @@ Future<void> setup() async {
   sl.registerLazySingleton(() => CourseUseCase(sl()));
   sl.registerLazySingleton(() => GetCourseWithSectionsUseCase(sl()));
   sl.registerLazySingleton(() => GetLessonDetailsUseCase(sl()));
-  sl.registerLazySingleton(()=> PostUserCheek(sl()));
+  sl.registerLazySingleton(() => CompleteLessonUseCase(sl()));
 
   //! Bloc
   // * Auth
@@ -128,7 +128,7 @@ Future<void> setup() async {
   sl.registerLazySingleton(() => EditProfileBloc(sl()));
   //Course
   sl.registerLazySingleton(() => CourseBloc(sl()));
-  sl.registerLazySingleton(() => CourseWithSectionsBloc(sl()));
+  sl.registerLazySingleton(() => CourseWithSectionsBloc( courseWithSectionsUseCase: sl(), completeLessonUseCase: sl(),));
   sl.registerLazySingleton(() => LessonDetailBloc(sl()));
-  sl.registerLazySingleton(()=> CheckAnswerBloc(courseRepo: sl()));
+  sl.registerLazySingleton(() => CompleteLessonBloc(repo: sl()));
 }

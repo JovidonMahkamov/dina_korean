@@ -263,9 +263,9 @@ class _ProfilePageState extends State<ProfilePage> {
                           onPressed: () async {
                             var box = Hive.box('authBox');
                             await box.clear();
-                            Navigator.pushReplacementNamed(
+                            Navigator.pushNamedAndRemoveUntil(
                                 context,
-                                RouteNames.signInPage,);
+                                RouteNames.signInPage,(route) => false,);
                           },
                           child: Text('Ha'),
                           style: ElevatedButton.styleFrom(

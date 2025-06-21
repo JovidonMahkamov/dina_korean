@@ -6,10 +6,10 @@ import 'features/auth/presentation/bloc/log_in/log_in_bloc.dart';
 import 'features/home/presentation/bloc/statistic/statistic_bloc.dart';
 import 'features/online_lessons/data/repository/course_repo_impl.dart';
 import 'features/online_lessons/domain/repository/course_repo.dart';
+import 'features/online_lessons/presentation/bloc/complate_lesson/complate_lesson_bloc.dart';
 import 'features/online_lessons/presentation/bloc/course_with_sections/course_with_sections_bloc.dart';
 import 'features/online_lessons/presentation/bloc/lesson_detail/lesson_detail_bloc.dart';
 import 'features/online_lessons/presentation/bloc/online_lesson/course_bloc.dart';
-import 'features/online_lessons/presentation/bloc/user_cheek/user_cheek_bloc.dart';
 import 'features/profile/presentation/bloc/edit_profile/edit_profile_bloc.dart';
 import 'features/profile/presentation/bloc/profile/profile_bloc.dart';
 import 'features/result/presentation/bloc/result/result_bloc.dart';
@@ -35,7 +35,7 @@ class MyBlocProvider extends StatelessWidget {
           BlocProvider<CourseBloc>(create: (context) => sl<CourseBloc>()),
           BlocProvider<CourseWithSectionsBloc>(create: (context) => sl<CourseWithSectionsBloc>()),
           BlocProvider<LessonDetailBloc>(create: (context) => sl<LessonDetailBloc>()),
-          BlocProvider<CheckAnswerBloc>(create: (context) => sl<CheckAnswerBloc>()),
+          BlocProvider<CompleteLessonBloc>(create: (context) => sl<CompleteLessonBloc>()),
         ],
         child: child,
       ),

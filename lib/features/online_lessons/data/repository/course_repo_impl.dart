@@ -25,7 +25,9 @@ class CourseRepoImpl implements CourseRepo {
   }
 
   @override
-  Future<bool> postCheek({required int courseId, required int lessonId, required String answer})  {
-    return courseRemoteDataSource.postCheek(courseId: courseId, lessonId: lessonId, answer: answer);
+  Future<CourseWithSectionsEntity?> completeLesson({required int courseId, required int lessonId}) {
+    return courseRemoteDataSource.completeLesson(courseId: courseId, lessonId: lessonId);
   }
+
+
 }

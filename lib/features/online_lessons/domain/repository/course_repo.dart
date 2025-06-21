@@ -7,6 +7,9 @@ abstract class CourseRepo{
   Future<List<CourseEntity>> getCourse();
   Future<CourseWithSectionsEntity> getCourseWithSections({required CourseEntity courseId});
   Future<LessonDetailsEntity> getLessonDetail({required int lessonId});
-  Future<bool> postCheek({required int courseId,required int lessonId,required String answer});
+  Future<CourseWithSectionsEntity?> completeLesson({
+    required int courseId,
+    required int lessonId,
+  });
 
 }
