@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:dina_korean_real/features/result/domain/entities/result.dart';
 
 class ResultDetailPage extends StatelessWidget {
@@ -15,19 +16,38 @@ class ResultDetailPage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Image.network(
-                result.img,
-                width: double.infinity,
-                // height: 250,
-                fit: BoxFit.cover,
-              ),
+              _buildImageWithShimmer(result.img),
               const SizedBox(height: 20),
-              const SizedBox(height: 10),
             ],
           ),
         ),
       ),
     );
   }
-}
 
+  Widget _buildImageWithShimmer(String imageUrl) {
+    return Image.network(
+      imageUrl,
+      width: double.infinity,
+      fit: BoxFit.cover,
+      loadingBuilder: (context, child, loadingProgress) {
+        if (loadingProgress == null) return child;
+
+        return Shimmer.fromColors(
+          baseColor: Colors.grey.shade300,
+          highlightColor: Colors.grey.shade100,
+          child: Container(
+            width: double.infinity,
+            height: 200,
+            color: Colors.white,
+          ),
+        );
+      },
+      errorBuilder: (context, error, stackTrace) {
+        return const Center(
+          child: Text("❌ Rasmni yuklab bo‘lmadi"),
+        );
+      },
+    );
+  }
+}

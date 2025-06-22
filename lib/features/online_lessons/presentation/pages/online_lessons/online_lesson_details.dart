@@ -322,11 +322,12 @@ class _OnlineLessonDetailsState extends State<OnlineLessonDetails> {
   }
 
   Widget _buildTaskWidget(TaskEntity task, int index) {
-    bool isAnswered = false;
-    bool isError = false;
-
     return StatefulBuilder(
       builder: (context, setState) {
+        bool isError = false;
+        bool isAnswered = _isCorrectList[index];
+        bool hasAttempted = _controllers[index].text.isNotEmpty;
+
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -339,6 +340,7 @@ class _OnlineLessonDetailsState extends State<OnlineLessonDetails> {
             const SizedBox(height: 10),
             TextField(
               controller: _controllers[index],
+              readOnly: isAnswered,
               decoration: InputDecoration(
                 labelText: "Javob (UZ)",
                 border: OutlineInputBorder(
@@ -348,24 +350,23 @@ class _OnlineLessonDetailsState extends State<OnlineLessonDetails> {
               ),
             ),
             const SizedBox(height: 10),
+
             if (!isAnswered)
               ElevatedButton.icon(
                 onPressed: () {
                   String userAnswer =
-                      _controllers[index].text.trim().toLowerCase();
+                  _controllers[index].text.trim().toLowerCase();
                   String correctAnswer = task.textUz.trim().toLowerCase();
 
                   if (userAnswer == correctAnswer) {
                     setState(() {
-                      isAnswered = true;
                       isError = false;
                       _isCorrectList[index] = true;
                     });
 
                     this.setState(() {});
-
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
+                      const SnackBar(
                         content: Text("✅ Javob to'g'ri!"),
                         backgroundColor: Colors.green,
                       ),
@@ -377,7 +378,7 @@ class _OnlineLessonDetailsState extends State<OnlineLessonDetails> {
                     });
 
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
+                      const SnackBar(
                         content: Text("❌ Xato javob kiritdingiz!"),
                         backgroundColor: Colors.red,
                       ),
@@ -404,4 +405,5 @@ class _OnlineLessonDetailsState extends State<OnlineLessonDetails> {
       },
     );
   }
+
 }
