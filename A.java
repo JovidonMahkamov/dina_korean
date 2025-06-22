@@ -1,0 +1,1 @@
+rename getAppName --targets ios,android,macos,windows,linux

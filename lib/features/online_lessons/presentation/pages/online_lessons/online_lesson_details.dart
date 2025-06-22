@@ -6,6 +6,7 @@ import 'package:dina_korean_real/features/online_lessons/presentation/bloc/lesso
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../../core/route/route_names.dart';
 import '../../../domain/entities/course_entity.dart';
 import '../../../domain/entities/task_entity.dart';
 import '../../bloc/course_event.dart';
@@ -247,6 +248,76 @@ class _OnlineLessonDetailsState extends State<OnlineLessonDetails> {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
+                              const Divider(),
+                              Text(
+                                "Darsga oid lug‘at:",
+                                style: TextStyle(
+                                  fontSize: 18.sp,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              ListView.builder(
+                                physics: const NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                itemCount: lesson.dictionary.split(', ').length,
+                                itemBuilder: (context, index) {
+                                  final item =
+                                  lesson.dictionary.split(', ')[index];
+                                  final parts = item.split(' - ');
+                                  final kr = parts[0];
+                                  final uz = parts.length > 1 ? parts[1] : '';
+
+                                  return ListTile(
+                                    dense: true,
+                                    leading: Icon(
+                                      Icons.verified_outlined,
+                                      color: Colors.blue,
+                                      size: 25.sp,
+                                    ),
+                                    title: Text(
+                                      '$kr - $uz',
+                                      style: TextStyle(fontSize: 14.sp),
+                                    ),
+                                  );
+                                },
+                              ),
+                              const SizedBox(height: 20),
+                              if (lesson.audioUrl.isNotEmpty)
+                                ElevatedButton.icon(
+                                  onPressed: () {
+                                    Navigator.pushNamed(
+                                      context,
+                                      RouteNames.audioWebViewPage,
+                                      arguments: lesson.audioUrl,
+                                    );
+                                  },
+                                  icon: const Icon(
+                                    Icons.headphones,
+                                    color: Colors.white,
+                                  ),
+                                  label: const Text(
+                                    "Lug'atlarni eshitib oson yodlang",
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.deepPurple,
+                                    foregroundColor: Colors.white,
+                                    elevation: 4,
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 24,
+                                      vertical: 14,
+                                    ),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                    shadowColor: Colors.deepPurpleAccent
+                                        .withOpacity(0.4),
+                                  ),
+                                ),
                               const Divider(),
                               Text(
                                 "Mashqlar",

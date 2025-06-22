@@ -247,7 +247,7 @@ class _Home_PageState extends ConsumerState<Home_Page> {
                               size: 35.sp,
                             ),
                             title: "Qo'llanmalar",
-                            subtitle: statistics.teachers.toString(),
+                            subtitle: '26',
                             circularColor:
                                 context.isDark
                                     ? Color(0xFF1B5E20)
